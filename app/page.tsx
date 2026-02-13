@@ -1,9 +1,8 @@
 "use client";
+
 import { useState } from "react";
-import UserLoginForm from "../components/User/Login/UserLoginForm";
-import LoginForm from "../components/Provider/Login/ProviderLoginForm";
-import UserRegisterForm from "../components/User/Register/UserRegisterForm";
-import RegisterForm from "../components/Provider/Register/ProviderRegisterForm";
+import LoginForm from "../components/Login/LoginForm";
+import RegisterForm from "../components/Register/RegisterForm";
 
 export default function Home() {
   const [currentScreen, setCurrentScreen] = useState("user-login");
@@ -47,11 +46,11 @@ export default function Home() {
   const renderContent = () => {
     switch (currentScreen) {
       case "user-login":
-        return <UserLoginForm />;
+        return <LoginForm isUserLogin={true} />;
       case "provider-login":
         return <LoginForm />;
       case "user-register":
-        return <UserRegisterForm />;
+        return <RegisterForm isUserResgister={true} />;
       case "provider-register":
         return <RegisterForm />;
     }
