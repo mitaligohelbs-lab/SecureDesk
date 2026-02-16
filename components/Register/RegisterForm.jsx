@@ -16,8 +16,9 @@ import InputLabel from "../Common/InputLabel";
 import ProfileDocumentUpload from "../Common/ProfileDocumentUpload";
 
 import { serviceTypes } from "../../constant";
-import { SignUp, SignUpButton, useSignUp } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import { useSignUp } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const RegisterForm = ({ isUserResgister }) => {
   const {
@@ -29,14 +30,12 @@ const RegisterForm = ({ isUserResgister }) => {
   } = useForm();
 
   const { isLoaded, signUp } = useSignUp();
+  const router = useRouter();
 
   const onSubmit = async (data) => {
     if (!isLoaded) return;
     try {
       const role = isUserResgister ? "customer" : "provider";
-
-      console.log(data);
-
       const result = await signUp.create({
         emailAddress: data.email,
         password: data.password,
@@ -51,10 +50,12 @@ const RegisterForm = ({ isUserResgister }) => {
         strategy: "email_code",
       });
 
-      console.log(result);
+      if (result) {
+        router.push("/OTPVerification");
+      }
       reset();
     } catch (err) {
-      console.error("Signup error", err);
+      toast.error("Some error are there! Try again");
     }
   };
 
@@ -176,7 +177,7 @@ const RegisterForm = ({ isUserResgister }) => {
         </>
       )}
       <CommonButton
-        text={isUserResgister ? "register" : "Register as Provider"}
+        text={isUserResgister ? "Register" : "Register as Provider"}
       />
     </form>
   );
