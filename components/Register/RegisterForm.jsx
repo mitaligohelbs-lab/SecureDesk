@@ -16,8 +16,9 @@ import InputLabel from "../Common/InputLabel";
 import ProfileDocumentUpload from "../Common/ProfileDocumentUpload";
 
 import { serviceTypes } from "../../constant";
-
-import { supabaseClient } from "../../lib/supabaseClient";
+import { useSignUp } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const RegisterForm = ({ isUserResgister }) => {
   const {
@@ -28,34 +29,34 @@ const RegisterForm = ({ isUserResgister }) => {
     control,
   } = useForm();
 
-  const customerSignUp = async (email, password) => {
-    const { data, error } = await supabaseClient.auth.signUp({
-      email,
-      password,
-    });
-    if (error) {
-      console.error("Auth error:", error);
-      return;
-    }
+  const { isLoaded, signUp } = useSignUp();
+  const router = useRouter();
 
-    const { error: profileError } = await supabaseClient
-      .from("profiles")
-      .insert({
-        id: data.user.id,
-        email,
-        role: "customer",
+  const onSubmit = async (data) => {
+    if (!isLoaded) return;
+    try {
+      const role = isUserResgister ? "customer" : "provider";
+      const result = await signUp.create({
+        emailAddress: data.email,
+        password: data.password,
+        unsafeMetadata: {
+          role,
+          fullName: data.fullName,
+          mobileNo: data.mobileNo,
+        },
       });
 
-    if (profileError) {
-      console.error("Profile insert error:", profileError);
+      await signUp.prepareEmailAddressVerification({
+        strategy: "email_code",
+      });
+
+      if (result) {
+        router.push("/OTPVerification");
+      }
+      reset();
+    } catch (err) {
+      toast.error("Some error are there! Try again");
     }
-
-    reset();
-  };
-
-  const onSubmit = (data) => {
-    console.log(data);
-    customerSignUp(data.email, data.password);
   };
 
   return (
@@ -176,7 +177,7 @@ const RegisterForm = ({ isUserResgister }) => {
         </>
       )}
       <CommonButton
-        text={isUserResgister ? "register" : "Register as Provider"}
+        text={isUserResgister ? "Register" : "Register as Provider"}
       />
     </form>
   );

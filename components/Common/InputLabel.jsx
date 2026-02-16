@@ -16,7 +16,7 @@ const InputLabel = ({
       <div className="relative">
         <Icon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
         <Input
-          className="pl-10 h-12 rounded-xl border-gray-200 focus:border-blue-400 focus:ring-blue-400/20"
+          className={`pl-10 h-12 rounded-xl border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 ${error && "border-red-500"}`}
           placeholder={placeholder}
           id={id}
           name={name}
