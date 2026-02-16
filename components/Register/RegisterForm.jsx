@@ -16,8 +16,8 @@ import InputLabel from "../Common/InputLabel";
 import ProfileDocumentUpload from "../Common/ProfileDocumentUpload";
 
 import { serviceTypes } from "../../constant";
-
-import { supabaseClient } from "../../lib/supabaseClient";
+import { SignUp, SignUpButton, useSignUp } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 const RegisterForm = ({ isUserResgister }) => {
   const {
@@ -28,34 +28,34 @@ const RegisterForm = ({ isUserResgister }) => {
     control,
   } = useForm();
 
-  const customerSignUp = async (email, password) => {
-    const { data, error } = await supabaseClient.auth.signUp({
-      email,
-      password,
-    });
-    if (error) {
-      console.error("Auth error:", error);
-      return;
-    }
+  const { isLoaded, signUp } = useSignUp();
 
-    const { error: profileError } = await supabaseClient
-      .from("profiles")
-      .insert({
-        id: data.user.id,
-        email,
-        role: "customer",
+  const onSubmit = async (data) => {
+    if (!isLoaded) return;
+    try {
+      const role = isUserResgister ? "customer" : "provider";
+
+      console.log(data);
+
+      const result = await signUp.create({
+        emailAddress: data.email,
+        password: data.password,
+        unsafeMetadata: {
+          role,
+          fullName: data.fullName,
+          mobileNo: data.mobileNo,
+        },
       });
 
-    if (profileError) {
-      console.error("Profile insert error:", profileError);
+      await signUp.prepareEmailAddressVerification({
+        strategy: "email_code",
+      });
+
+      console.log(result);
+      reset();
+    } catch (err) {
+      console.error("Signup error", err);
     }
-
-    reset();
-  };
-
-  const onSubmit = (data) => {
-    console.log(data);
-    customerSignUp(data.email, data.password);
   };
 
   return (
