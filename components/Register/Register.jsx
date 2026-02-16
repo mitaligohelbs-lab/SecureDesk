@@ -3,6 +3,7 @@ import { User, Briefcase, ArrowLeft } from "lucide-react";
 
 import { Card, CardContent, CardHeader } from "../ui/card";
 import RegisterForm from "./RegisterForm";
+import LoginWithGitHub from "../Login/LoginWithGitHub";
 
 const Register = ({ isUserResgister = false }) => {
   return (
@@ -34,17 +35,16 @@ const Register = ({ isUserResgister = false }) => {
         <CardContent className="space-y-4">
           <RegisterForm isUserResgister={isUserResgister} />
 
-          {isUserResgister && (
-            <div className="w-full text-center text-blue-600 hover:text-blue-700 font-medium">
-              Or continue with Google
-            </div>
-          )}
+          {isUserResgister && <LoginWithGitHub />}
 
           <div className="text-center space-x-1">
             <p className="text-sm text-gray-600">Already have an account?</p>
-            <p className="text-blue-600 hover:text-blue-700 font-medium">
+            <Link
+              className="text-blue-600 hover:text-blue-700 font-medium"
+              href={isUserResgister ? "/user/login" : "/provider/login"}
+            >
               Sign in here
-            </p>
+            </Link>
           </div>
           <div className="bg-blue-50/50 rounded-xl p-3">
             <p className="text-xs text-gray-600 text-center">
