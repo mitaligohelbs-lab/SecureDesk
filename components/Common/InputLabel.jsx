@@ -1,7 +1,15 @@
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
-const InputLabel = ({ label, Icon, placeholder }) => {
+const InputLabel = ({
+  label,
+  Icon,
+  placeholder,
+  id,
+  name,
+  error,
+  ...props
+}) => {
   return (
     <div className="w-full space-y-2">
       <Label>{label}</Label>
@@ -10,8 +18,12 @@ const InputLabel = ({ label, Icon, placeholder }) => {
         <Input
           className="pl-10 h-12 rounded-xl border-gray-200 focus:border-blue-400 focus:ring-blue-400/20"
           placeholder={placeholder}
+          id={id}
+          name={name}
+          {...props}
         />
       </div>
+      {error && <p className="text-sm text-red-500">{error}</p>}
     </div>
   );
 };
