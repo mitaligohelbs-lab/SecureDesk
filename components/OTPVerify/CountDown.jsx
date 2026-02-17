@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/input-otp";
 import CommonButton from "../Common/CommonButton";
 
-const CountDown = ({ isReset = false, data, setData }) => {
+const CountDown = ({ isReset = false, data }) => {
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
   const [timeLeft, setTimeLeft] = useState(60);
@@ -113,7 +113,7 @@ const CountDown = ({ isReset = false, data, setData }) => {
           Enter the 6-digit code sent to your email
         </p>
       )}
-      <div className="flex justify-center gap-3">
+      <div className="mb-2 flex justify-center items-center">
         <InputOTP
           maxLength={6}
           value={otp}
@@ -122,7 +122,7 @@ const CountDown = ({ isReset = false, data, setData }) => {
             setError("");
           }}
         >
-          <InputOTPGroup className="p-3">
+          <InputOTPGroup className="gap-2">
             <InputOTPSlot index={0} />
             <InputOTPSlot index={1} />
             <InputOTPSlot index={2} />
