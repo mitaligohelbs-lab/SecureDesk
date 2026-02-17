@@ -8,6 +8,7 @@ const InputLabel = ({
   id,
   name,
   error,
+  type,
   ...props
 }) => {
   return (
@@ -19,6 +20,7 @@ const InputLabel = ({
           className={`pl-10 h-12 rounded-xl border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 ${error && "border-red-500"}`}
           placeholder={placeholder}
           id={id}
+          type={type}
           name={name}
           {...props}
         />

@@ -63,6 +63,7 @@ const RegisterForm = ({ isUserResgister }) => {
     <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
       <InputLabel
         label="Full Name"
+        type="text"
         placeholder="Enter your full name"
         Icon={User}
         id="fullName"
@@ -74,6 +75,7 @@ const RegisterForm = ({ isUserResgister }) => {
       />
       <InputLabel
         label="Email"
+        type="email"
         placeholder="Enter your email"
         Icon={Mail}
         id="email"
@@ -92,6 +94,7 @@ const RegisterForm = ({ isUserResgister }) => {
         label="Password"
         Icon={Lock}
         id="password"
+        type="password"
         name="password"
         {...register("password", {
           required: "Password is required",
@@ -101,11 +104,13 @@ const RegisterForm = ({ isUserResgister }) => {
           },
         })}
         error={errors.password?.message}
+        autoComplete="new-password"
       />
       <InputLabel
         placeholder="Enter your mobile number"
         label="Mobile Number"
         Icon={Phone}
+        type="text"
         id="mobileNo"
         name="mobileNo"
         {...register("mobileNo", {

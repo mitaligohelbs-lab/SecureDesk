@@ -43,6 +43,7 @@ const LoginForm = ({ isUserLogin }) => {
         placeholder="Enter your email"
         Icon={Mail}
         id="email"
+        type="email"
         name="email"
         {...register("email", {
           required: "Email is required",
@@ -53,6 +54,7 @@ const LoginForm = ({ isUserLogin }) => {
         placeholder="Enter your password"
         label="Password"
         Icon={Lock}
+        type="password"
         id="password"
         name="password"
         {...register("password", {

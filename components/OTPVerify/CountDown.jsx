@@ -76,7 +76,7 @@ const CountDown = ({ isUserResgister }) => {
 
   return (
     <div>
-      <div className="flex justify-center gap-3">
+      <div className="mb-2 flex justify-center items-center">
         <InputOTP
           maxLength={6}
           value={otp}
@@ -85,7 +85,7 @@ const CountDown = ({ isUserResgister }) => {
             setError("");
           }}
         >
-          <InputOTPGroup className="p-3">
+          <InputOTPGroup className="gap-2">
             <InputOTPSlot index={0} />
             <InputOTPSlot index={1} />
             <InputOTPSlot index={2} />
