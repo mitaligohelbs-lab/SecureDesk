@@ -53,6 +53,7 @@ const RegisterForm = ({ isUserResgister }) => {
       if (result) {
         router.push("/OTPVerification");
       }
+      toast.success("OTP send successfully!");
       reset();
     } catch (err) {
       toast.error("Some error are there! Try again");
