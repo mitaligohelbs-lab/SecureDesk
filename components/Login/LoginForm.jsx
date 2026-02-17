@@ -1,14 +1,19 @@
 "use client";
-import { Mail, Lock } from "lucide-react";
-import InputLabel from "../Common/InputLabel";
-import CommonButton from "../Common/CommonButton";
+
+import { useState } from "react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useSignIn } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { Mail, Lock } from "lucide-react";
+
+import InputLabel from "../Common/InputLabel";
+import CommonButton from "../Common/CommonButton";
 
 const LoginForm = ({ isUserLogin }) => {
   const { signIn, setActive, isLoaded } = useSignIn();
+  const [remember, setRemember] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -31,8 +36,7 @@ const LoginForm = ({ isUserLogin }) => {
         router.push("/success");
       }
     } catch (err) {
-      console.error("Clerk Error:", err.errors?.[0]?.message);
-      toast.error("Error !");
+      toast.error(`${err.errors?.[0]?.message}`);
     }
   };
 
@@ -64,12 +68,20 @@ const LoginForm = ({ isUserLogin }) => {
       />
       <div className="flex justify-between">
         <div className="flex gap-1">
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            value={remember}
+            onChange={(e) => setRemember(e.target.checked)}
+          />
           <span className="text-sm">Remember Me</span>
         </div>
-        <div>
-          <span className="text-sm text-blue-600">Forgot password</span>
-        </div>
+
+        <Link
+          className="text-sm text-blue-600 cursor-pointer"
+          href="/forgot-password"
+        >
+          Forgot password
+        </Link>
       </div>
 
       <CommonButton text={isUserLogin ? "Login" : "Login as Provider"} />
