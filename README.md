@@ -1,41 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔐 SecureDesk
 
-## Getting Started
+SecureDesk is a modern authentication system built with **Next.js 16** and **Clerk**, supporting **role-based authentication** for **Customers** and **Providers** with a clean and simple UI.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+
+- Email & Password Login / Register
+- Google OAuth
+- Email OTP Verification
+- Forgot Password (OTP based)
+- Role-based authentication (Customer / Provider)
+- Secure session handling
+- Logout support
+- Minimal & responsive UI
+
+---
+
+## 🧱 Tech Stack
+
+- **Next.js 16**
+- **React 19**
+- **TypeScript**
+- **Clerk Authentication**
+- **Redux Toolkit**
+- **React Hook Form**
+- **Tailwind CSS v4**
+- **shadcn/ui + Radix UI**
+- **Lucide Icons**
+- **React Toastify**
+
+---
+
+## Role-Based Auth Flow
+
+User selects Customer or Provider during registration
+Role is stored in Clerk unsafeMetadata
+After login, users are redirected based on role
+Customer → /customer
+Provider → /provider
+
+## 🛠️ Setup
+
+1) npm install
+```
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2) Environment Variables
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=""
+CLERK_SECRET_KEY=""
+NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL=""
+```
+3) Run project
+```
+npm run dev
+```
+## 🎨 UI Reference
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Authentication flow inspired by this Figma design:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+https://www.figma.com/make/KnkpbcPA73wW7ntp0XFUvt/Authentication-Registration-Flow-UI--Community-?p=f&t=MMTaTHl0UaZOm31J-0
 
 
-
-
- <!-- Database Password: 9b8+sRy*.cPL3RM -->
