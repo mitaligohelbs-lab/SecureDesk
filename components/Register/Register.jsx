@@ -35,8 +35,6 @@ const Register = ({ isUserResgister = false }) => {
         <CardContent className="space-y-4">
           <RegisterForm isUserResgister={isUserResgister} />
 
-          {isUserResgister && <LoginWithGitHub />}
-
           <div className="text-center space-x-1">
             <p className="text-sm text-gray-600">Already have an account?</p>
             <Link

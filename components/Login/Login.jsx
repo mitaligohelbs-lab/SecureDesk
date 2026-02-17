@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 import LoginForm from "./LoginForm.jsx";
+import RegisterWithGoogle from "../Register/RegisterWithGoogle.jsx";
 
 const Login = ({ isUserLogin = false }) => {
   return (
@@ -36,7 +37,7 @@ const Login = ({ isUserLogin = false }) => {
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
-          <LoginForm isUserLogin={isUserLogin}/>
+          <LoginForm isUserLogin={isUserLogin} />
           {isUserLogin && (
             <>
               <div className="relative">
@@ -47,15 +48,7 @@ const Login = ({ isUserLogin = false }) => {
                   <span className="px-4 bg-white text-gray-500">Or</span>
                 </div>
               </div>
-
-              <Button
-                type="button"
-                variant="outline"
-                className="w-full border-gray-200 transition-all h-12 hover:border-blue-300 hover:bg-blue-50/50 duration-200"
-              >
-                <Chrome />
-                <span>Continue with Google</span>
-              </Button>
+              <RegisterWithGoogle />
             </>
           )}
 
@@ -75,22 +68,16 @@ const Login = ({ isUserLogin = false }) => {
 
           <div className="border-t border-gray-200 pt-3 text-center">
             <button className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-              {isUserLogin
-                ? " Are you a care provider? Login here"
-                : "Looking for care services? Customer login"}
+              {isUserLogin ? (
+                <Link href="/provider/login">
+                  {"Are you a care provider? Login here"}
+                </Link>
+              ) : (
+                <Link href="/user/login">
+                  {"Looking for care services? Customer login"}
+                </Link>
+              )}
             </button>
-          </div>
-
-          <div className="bg-blue-50/50 rounded-xl p-3">
-            <p className="text-xs text-gray-600 text-center">
-              Demo: Use any email/password or try{" "}
-              <span className="font-mono">
-                {isUserLogin ? " wrong@email.com" : "pending@provider.com"}
-              </span>{" "}
-              {isUserLogin
-                ? " to see error handling"
-                : " for pending approval, or wrong@provider.com for login error"}
-            </p>
           </div>
         </CardContent>
       </Card>
