@@ -12,7 +12,7 @@ const ForgotPassword = () => {
       mainHeadingText=" Forgot your password?"
       subHeadingText="Enter your email to reset it!"
     >
-      <CardContent>
+      <CardContent className="p-2">
         <ForgotpasswordForm />
       </CardContent>
     </CardLayout>

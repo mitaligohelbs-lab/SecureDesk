@@ -1,5 +1,7 @@
 "use client";
+
 import { Home } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import { CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,10 +11,11 @@ import { useUser } from "@clerk/nextjs";
 
 const SuccessScreen = () => {
   const { user } = useUser();
+  const router = useRouter();
   return (
     <CardLayout
       isDisplayAerrowIcon={false}
-      headerIcon={<Home className="w-25 h-25" />}
+      headerIcon={<Home className="w-8 h-8" />}
       mainHeadingText={`Welcome back! ${user?.unsafeMetadata?.fullName || ""}`}
       subHeadingText={
         user?.unsafeMetadata?.role
@@ -30,7 +33,10 @@ const SuccessScreen = () => {
           </p>
         </div>
 
-        <Button className="w-full h-12 bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl">
+        <Button
+          className="w-full h-12 bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+          onClick={() => router.push("/dashboard")}
+        >
           {"Go to Dashboard"}
         </Button>
       </CardContent>

@@ -8,15 +8,15 @@ import Logout from "./Logout";
 const CardLayout = ({
   isDisplayAerrowIcon = true,
   iconBackLink = "",
-  headerIcon,
+  headerIcon = "",
   mainHeadingText = "",
   subHeadingText = "",
   children,
   displayLogOutButton = false,
 }) => {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-linear-to-br from-blue-50 to-indigo-100">
-      <Card className="w-full max-w-md shadow-xl bg-white/80 backdrop-blur-sm border-0 p-4 rounded-md ">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-linear-to-br from-blue-50 to-indigo-100 p-2 md:p-2">
+      <Card className="w-full max-w-md shadow-xl bg-white/80 backdrop-blur-sm border-0 p-4 rounded-md gap-1">
         <CardHeader className="text-center pb-4">
           {isDisplayAerrowIcon && (
             <Link
@@ -31,9 +31,11 @@ const CardLayout = ({
               <Logout />
             </div>
           )}
-          <div className="w-16 h-16 bg-linear-to-r from-blue-400 to-indigo-500 rounded-full mx-auto mb-4 flex items-center justify-center">
-            {headerIcon}
-          </div>
+          {headerIcon && (
+            <div className="w-16 h-16 bg-linear-to-r from-blue-400 to-indigo-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+              {headerIcon}
+            </div>
+          )}
           {mainHeadingText && (
             <div className="text-2xl bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
               {mainHeadingText}
