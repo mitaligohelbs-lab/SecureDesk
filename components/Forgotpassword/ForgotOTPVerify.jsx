@@ -29,7 +29,7 @@ const ForgotOTPVerify = () => {
       headerIcon={<Lock className="w-8 h-8 text-white" />}
       subHeadingText="Enter your new password & code to reset it!"
     >
-      <CardContent>
+      <CardContent className="p-1">
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputLabel
             placeholder="Enter your new password"

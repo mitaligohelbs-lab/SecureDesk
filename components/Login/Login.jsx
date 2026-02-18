@@ -25,7 +25,7 @@ const Login = ({ isUserLogin = false }) => {
           : "Access your care provider account"
       }
     >
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 p-0 sm:p-3">
         <LoginForm isUserLogin={isUserLogin} />
         {isUserLogin && (
           <>

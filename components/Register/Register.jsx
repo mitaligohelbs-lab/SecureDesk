@@ -23,7 +23,7 @@ const Register = ({ isUserResgister = false }) => {
           : "Join our network of care professionals"
       }
     >
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 p-0 md:p-3">
         <RegisterForm isUserResgister={isUserResgister} />
 
         <div className="text-center space-x-1">
