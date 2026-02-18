@@ -56,7 +56,7 @@ const RegisterForm = ({ isUserResgister }) => {
       toast.success("OTP send successfully!");
       reset();
     } catch (err) {
-      toast.error(`${err?.message} Use different email`);
+      toast.error(err?.message);
     }
   };
 
